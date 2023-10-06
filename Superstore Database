@@ -1,0 +1,101 @@
+CREATE TABLE superstore (
+    item_id INTEGER PRIMARY KEY,
+    item_name TEXT,
+    category TEXT,
+    price DECIMAL(10, 2),
+    stock_quantity INTEGER,
+    average_rating DECIMAL(3, 2)
+);
+
+INSERT INTO superstore (item_id, item_name, category, price, stock_quantity, average_rating)
+VALUES
+    (1, 'Stainless Steel Cookware Set', 'Kitchen Supplies', 89.99, 50, 4.6),
+    (2, 'Memory Foam Mattress', 'Furnishings', 499.99, 30, 4.8),
+    (3, 'Smart LED TV', 'Electronics', 549.00, 20, 4.5),
+    (4, 'Robot Vacuum Cleaner', 'Appliances', 199.50, 40, 4.3),
+    (5, 'Wireless Bluetooth Speaker', 'Electronics', 39.99, 60, 4.2),
+    (6, 'Non-Stick Baking Set', 'Kitchen Supplies', 29.95, 80, 4.4),
+    (7, 'Cotton Bedding Set', 'Furnishings', 89.00, 25, 4.7),
+    (8, 'Smart Home Security Camera', 'Electronics', 79.95, 15, 4.1),
+    (9, 'Air Purifier', 'Appliances', 129.50, 35, 4.6),
+    (10, 'Premium Coffee Maker', 'Kitchen Supplies', 79.99, 50, 4.9),
+    (11, 'Ergonomic Office Chair', 'Furnishings', 189.00, 20, 4.5),
+    (12, 'Wireless Earbuds', 'Electronics', 49.99, 75, 4.3),
+    (13, 'Slow Cooker', 'Appliances', 49.95, 30, 4.7),
+    (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
+    (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
+
+#Write your own SQL query that uses a SELECT statement to order the items by price.
+SELECT 
+item_name, item_id, price
+FROM superstore
+ORDER BY price
+
+#Write your own SQL query that will show a statistic about the item prices, like a sum, average, minimum, maximum, or count.
+SELECT SUM(price) AS total_price
+FROM superstore;
+
+Total price = 2135.29
+
+SELECT AVG(price) AS average_price
+FROM superstore;
+
+Average price = 142.35266666666666
+
+SELECT MIN(price) AS min_price
+FROM superstore;
+
+Min price = 24.99
+
+SELECT MAX(price) AS max_price
+FROM superstore;
+
+Max price = 549
+
+SELECT COUNT(*) AS item_count
+FROM superstore;
+
+Item count = 15
+
+#Write your own SQL query that will show a statistic about the price for items in the category of "Kitchen Supplies".
+SELECT AVG(price) AS average_price
+FROM superstore
+WHERE category = 'Kitchen Supplies';
+
+Average price of items in ‘Kitchen Supplies’ = 58.6075
+
+#How much air purifiers are in stock?
+
+SELECT SUM(stock_quantity) AS air_purifiers_in_stock
+FROM superstore
+WHERE category = 'Appliances' AND item_name = 'Air Purifier';
+
+35
+
+
+#Which product does the store have least of?
+
+SELECT item_name, MIN(stock_quantity) AS least_quantity_in_stock
+FROM superstore;
+
+Smart Home Security Camera 15
+
+#Which product is the most stocked?
+
+SELECT item_name, MAX(stock_quantity) AS most_in_stock
+FROM superstore;
+
+
+Cozy Throw Blanket
+100
+
+
+
+#What are the prices highest to lowest on the products?
+
+SELECT * 
+FROM superstore
+ORDER BY price DESC;
+
+Highest price = 549
+Lowest price = 24.99
